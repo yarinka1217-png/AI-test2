@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Питання 6 — тип мислення</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const base = { analytical: 0, creative: 0, logic: 0, communication: 0 };
+        const scores = {
+          ...base,
+          ...JSON.parse(localStorage.getItem("thinkingScores") || "{}"),
+        };
+
+        document.querySelectorAll("[data-type]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const type = button.dataset.type;
+            const updated = { ...scores, [type]: (scores[type] || 0) + 1 };
+            localStorage.setItem("thinkingScores", JSON.stringify(updated));
+            window.location.href = "result.html";
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="fade-in">
+    <main class="main-card">
+      <div class="progress">Питання <span>6 / 6</span></div>
+      <div class="question-card">
+        <h1>Що тебе найбільше мотивує в навчанні чи нових проєктах?</h1>
+        <div class="option-list">
+          <button class="option-button" data-type="logic">
+            Розібратися, як усе працює всередині та вибудувати систему.
+          </button>
+          <button class="option-button" data-type="analytical">
+            Знати, як виміряти успіх і зробити висновки.
+          </button>
+          <button class="option-button" data-type="creative">
+            Можливість створити щось унікальне та красиве.
+          </button>
+          <button class="option-button" data-type="communication">
+            Ділитися знаннями й надихати інших рухатися далі.
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

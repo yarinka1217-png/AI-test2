@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Питання 5 — тип мислення</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const base = { analytical: 0, creative: 0, logic: 0, communication: 0 };
+        const scores = {
+          ...base,
+          ...JSON.parse(localStorage.getItem("thinkingScores") || "{}"),
+        };
+
+        document.querySelectorAll("[data-type]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const type = button.dataset.type;
+            const updated = { ...scores, [type]: (scores[type] || 0) + 1 };
+            localStorage.setItem("thinkingScores", JSON.stringify(updated));
+            window.location.href = "question6.html";
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="fade-in">
+    <main class="main-card">
+      <div class="progress">Питання <span>5 / 6</span></div>
+      <div class="question-card">
+        <h1>
+          Коли працюєш у команді, що приносить тобі найбільше задоволення?
+        </h1>
+        <div class="option-list">
+          <button class="option-button" data-type="communication">
+            Координувати людей і бути мостом між різними ролями.
+          </button>
+          <button class="option-button" data-type="logic">
+            Налагоджувати процеси, щоб усе працювало без збоїв.
+          </button>
+          <button class="option-button" data-type="creative">
+            Придумувати нові формати й рішення, які надихають інших.
+          </button>
+          <button class="option-button" data-type="analytical">
+            Вимірювати результати та розуміти, що саме спрацювало.
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

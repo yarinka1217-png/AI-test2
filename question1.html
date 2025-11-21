@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Питання 1 — тип мислення</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const base = { analytical: 0, creative: 0, logic: 0, communication: 0 };
+        const scores = {
+          ...base,
+          ...JSON.parse(localStorage.getItem("thinkingScores") || "{}"),
+        };
+
+        document.querySelectorAll("[data-type]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const type = button.dataset.type;
+            const updated = { ...scores, [type]: (scores[type] || 0) + 1 };
+            localStorage.setItem("thinkingScores", JSON.stringify(updated));
+            window.location.href = "question2.html";
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="fade-in">
+    <main class="main-card">
+      <div class="progress">Питання <span>1 / 6</span></div>
+      <div class="question-card">
+        <h1>Як ти підходиш до нової задачі на роботі?</h1>
+        <div class="option-list">
+          <button class="option-button" data-type="analytical">
+            Спочатку збираю дані, будую таблиці та шукаю закономірності.
+          </button>
+          <button class="option-button" data-type="creative">
+            Малюю кілька ідей у блокноті, експериментую з нестандартними
+            варіантами.
+          </button>
+          <button class="option-button" data-type="logic">
+            Розбиваю задачу на кроки та продумую логічні зв'язки між ними.
+          </button>
+          <button class="option-button" data-type="communication">
+            Обговорюю із командою, щоб зрозуміти очікування та пріоритети.
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

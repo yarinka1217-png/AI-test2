@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Питання 3 — тип мислення</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const base = { analytical: 0, creative: 0, logic: 0, communication: 0 };
+        const scores = {
+          ...base,
+          ...JSON.parse(localStorage.getItem("thinkingScores") || "{}"),
+        };
+
+        document.querySelectorAll("[data-type]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const type = button.dataset.type;
+            const updated = { ...scores, [type]: (scores[type] || 0) + 1 };
+            localStorage.setItem("thinkingScores", JSON.stringify(updated));
+            window.location.href = "question4.html";
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="fade-in">
+    <main class="main-card">
+      <div class="progress">Питання <span>3 / 6</span></div>
+      <div class="question-card">
+        <h1>Як ти презентуєш своє рішення команді чи клієнту?</h1>
+        <div class="option-list">
+          <button class="option-button" data-type="communication">
+            Створюю чіткий меседж, щоб кожен зрозумів суть і вигоди.
+          </button>
+          <button class="option-button" data-type="analytical">
+            Показую графіки, цифри й доведення, щоб підтримати висновки.
+          </button>
+          <button class="option-button" data-type="creative">
+            Додаю візуальні метафори й сторітелінг, щоб зацікавити.
+          </button>
+          <button class="option-button" data-type="logic">
+            Пояснюю послідовність кроків та їх вплив один на одного.
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
